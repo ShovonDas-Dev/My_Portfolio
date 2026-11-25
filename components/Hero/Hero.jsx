@@ -1,3 +1,4 @@
+
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
@@ -70,7 +71,7 @@ export default function Hero() {
         animate="visible"
         className="container-page relative z-10 grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16"
       >
-        {/* On mobile the text sits below the photo; on desktop it moves left. */}
+        {/* Hero Content */}
         <motion.div
           variants={textStaggerVariants}
           className="order-2 mx-auto w-full max-w-2xl text-center lg:order-1 lg:mx-0 lg:max-w-none lg:text-left"
@@ -81,9 +82,11 @@ export default function Hero() {
           >
             <span
               aria-hidden="true"
-              className="h-px w-8 bg-gradient-to-r from-transparent to-[#c04a8f]"
+              className="h-px w-8 bg-gradient-to-r from-transparent to-accent"
             />
-            <p className="text-sm font-medium text-muted">{heroData.greeting}</p>
+            <p className="text-sm font-medium text-muted">
+              {heroData.greeting}
+            </p>
           </motion.div>
 
           <motion.h1
@@ -92,12 +95,14 @@ export default function Hero() {
             className="mt-5 font-heading text-4xl font-extrabold leading-[0.98] tracking-[-0.055em] text-ink sm:text-5xl lg:text-7xl"
           >
             <span className="sr-only">{heroData.fullName}</span>
+
             <span aria-hidden="true" className="block">
               {heroData.firstName}
             </span>
+
             <span
               aria-hidden="true"
-              className="block bg-gradient-to-r from-[#a63d82] via-[#c04a8f] to-[#d26aa8] bg-clip-text text-transparent"
+              className="block bg-gradient-to-r from-accent via-accent to-accent bg-clip-text text-transparent"
             >
               {heroData.lastName}
             </span>
@@ -124,23 +129,27 @@ export default function Hero() {
             {heroData.description}
           </motion.p>
 
+          {/* Availability */}
           <motion.div
             variants={fadeUpVariants}
             className="mt-6 flex justify-center lg:justify-start"
           >
             <span className="inline-flex items-center gap-2 rounded-full border border-line bg-surface/70 px-3.5 py-1.5 text-xs font-semibold text-ink/80 shadow-sm backdrop-blur">
               <span aria-hidden="true" className="relative flex size-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75 motion-reduce:animate-none" />
-                <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-75 motion-reduce:animate-none" />
+                <span className="relative inline-flex size-2 rounded-full bg-success" />
               </span>
+
               {heroData.availability}
             </span>
           </motion.div>
 
+          {/* Action Buttons */}
           <motion.div variants={fadeUpVariants} className="mt-7">
             <HeroButtons />
           </motion.div>
 
+          {/* Social Links */}
           <motion.div
             variants={fadeUpVariants}
             className="mt-8 flex items-center justify-center gap-3 lg:justify-start"
@@ -149,6 +158,8 @@ export default function Hero() {
               const Icon = socialIcons[social.id];
               const opensNewTab = social.href.startsWith("http");
 
+              if (!Icon) return null;
+
               return (
                 <a
                   key={social.id}
@@ -156,7 +167,7 @@ export default function Hero() {
                   target={opensNewTab ? "_blank" : undefined}
                   rel={opensNewTab ? "noreferrer" : undefined}
                   aria-label={`${social.label}${opensNewTab ? " (opens in a new tab)" : ""}`}
-                  className="inline-flex size-10 items-center justify-center rounded-full border border-line bg-surface/60 text-muted transition-all duration-200 hover:-translate-y-0.5 hover:border-[#c04a8f]/50 hover:text-[#c04a8f] focus-visible:outline-[#c04a8f]"
+                  className="inline-flex size-10 items-center justify-center rounded-full border border-line bg-surface/60 text-muted transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/50 hover:text-accent focus-visible:outline-accent"
                 >
                   <Icon />
                 </a>
@@ -164,6 +175,7 @@ export default function Hero() {
             })}
           </motion.div>
 
+          {/* Technology Chips */}
           <motion.ul
             variants={fadeUpVariants}
             aria-label={heroData.techChipsLabel}
@@ -179,7 +191,7 @@ export default function Hero() {
                 >
                   <Icon
                     aria-hidden="true"
-                    className="size-3.5 text-[#c04a8f]"
+                    className="size-3.5 text-accent"
                   />
                   {chip.label}
                 </li>
@@ -188,7 +200,7 @@ export default function Hero() {
           </motion.ul>
         </motion.div>
 
-        {/* On mobile the photo appears first so it is visible immediately. */}
+        {/* Profile Image */}
         <motion.div
           variants={profileRevealVariants}
           className="order-1 w-full max-w-[280px] justify-self-center sm:max-w-[340px] lg:order-2 lg:max-w-[470px]"
@@ -197,18 +209,23 @@ export default function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* A small cue that tells visitors there is more content below. */}
+      {/* Scroll Indicator */}
       <div className="relative z-10 mt-12 flex justify-center">
         <a
           href="#about"
           aria-label={heroData.scrollAriaLabel}
-          className="group flex flex-col items-center gap-2 text-[10px] font-semibold tracking-[0.2em] text-muted transition-colors hover:text-ink focus-visible:outline-[#c04a8f]"
+          className="group flex flex-col items-center gap-2 text-[10px] font-semibold tracking-[0.2em] text-muted transition-colors hover:text-ink focus-visible:outline-accent"
         >
           <span>{heroData.scrollIndicator}</span>
+
           <motion.span
-            animate={shouldReduceMotion ? undefined : scrollArrowAnimation.animate}
+            animate={
+              shouldReduceMotion
+                ? undefined
+                : scrollArrowAnimation.animate
+            }
             transition={scrollArrowAnimation.transition}
-            className="grid size-8 place-items-center rounded-full border border-line bg-surface/60 transition-colors group-hover:border-[#c04a8f]/50 group-hover:text-[#c04a8f]"
+            className="grid size-8 place-items-center rounded-full border border-line bg-surface/60 transition-colors group-hover:border-accent/50 group-hover:text-accent"
           >
             <ArrowDown aria-hidden="true" className="size-4" />
           </motion.span>
