@@ -105,6 +105,139 @@
     scroll-margin-top: 92px;
   }
 
+  /* Reusable typography for the Development Journey section. */
+  .journey-label {
+    font-family: var(--font-dm-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    line-height: 1.7;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .journey-heading {
+    font-family: var(--font-manrope), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+    font-size: clamp(2.45rem, 6vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.02;
+    letter-spacing: -0.055em;
+    color: var(--ink);
+  }
+
+  .journey-subtitle {
+    font-size: clamp(0.875rem, 1.2vw, 0.9375rem);
+    line-height: 1.75;
+    color: var(--muted);
+  }
+
+  .journey-year {
+    font-family: var(--font-dm-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    line-height: 1.7;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .journey-step-title {
+    font-family: var(--font-manrope), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+  }
+
+  .journey-body {
+    font-size: 0.9375rem;
+    line-height: 1.75;
+    color: var(--muted);
+  }
+
+  .journey-badge {
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    line-height: 1.7;
+    color: var(--muted);
+    border: 1px solid var(--line);
+    border-radius: 9999px;
+    background-color: var(--surface);
+    padding-inline: 0.625rem;
+  }
+
+  .journey-tag,
+  .journey-mockup-text {
+    font-family: var(--font-dm-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.625rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  .journey-tag {
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .journey-mockup-title,
+  .journey-card-title {
+    font-family: var(--font-manrope), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .journey-mockup-title {
+    font-size: 0.75rem;
+  }
+
+  .journey-card-title {
+    font-size: 0.875rem;
+  }
+
+  .journey-card-meta,
+  .journey-card-link {
+    font-size: 0.6875rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  .journey-card-link {
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .journey-stat-value {
+    font-family: var(--font-manrope), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+  }
+
+  .journey-stat-label {
+    font-size: 0.75rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  .journey-button {
+    font-family: var(--font-manrope), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1.7;
+  }
+
+  @media (min-width: 640px) {
+    .journey-body {
+      font-size: 1rem;
+      line-height: 2;
+    }
+  }
+
   @media (max-width: 740px) {
     .container-page {
       max-width: 600px;
@@ -116,6 +249,116 @@
     .container-page {
       padding-inline: 16px;
     }
+  }
+}
+
+/* CSS-only animations for the Journey mockups. */
+.journey-code-line {
+  width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid var(--accent);
+  animation: journey-type 1.3s steps(20, end) forwards,
+    journey-caret 700ms step-end infinite;
+}
+
+.journey-code-line:nth-child(1) {
+  animation-delay: 0.2s, 0s;
+}
+
+.journey-code-line:nth-child(2) {
+  animation-delay: 0.9s, 0s;
+}
+
+.journey-code-line:nth-child(3) {
+  animation-delay: 1.5s, 0s;
+}
+
+@keyframes journey-type {
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes journey-caret {
+  50% {
+    border-right-color: transparent;
+  }
+}
+
+.journey-preview-window {
+  animation: journey-preview-width 7s ease-in-out infinite;
+}
+
+.journey-preview-cards {
+  animation: journey-preview-cards 7s ease-in-out infinite;
+}
+
+@keyframes journey-preview-width {
+  0%,
+  35%,
+  100% {
+    width: 100%;
+  }
+  50%,
+  85% {
+    width: 45%;
+  }
+}
+
+@keyframes journey-preview-cards {
+  0%,
+  35%,
+  100% {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  50%,
+  85% {
+    grid-template-columns: 1fr;
+  }
+}
+
+.journey-stack-visible .journey-layer {
+  animation: journey-layer-in 500ms ease-out both;
+}
+
+.journey-stack-visible .journey-layer:nth-child(2) {
+  animation-delay: 140ms;
+}
+
+.journey-stack-visible .journey-layer:nth-child(3) {
+  animation-delay: 280ms;
+}
+
+.journey-stack-visible .journey-layer:nth-child(4) {
+  animation-delay: 420ms;
+}
+
+@keyframes journey-layer-in {
+  from {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Green is used only for the requested "currently building" status dot. */
+.journey-status-dot {
+  background-color: #22c55e;
+  animation: journey-status-pulse 1.8s ease-out infinite;
+}
+
+@keyframes journey-status-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);
   }
 }
 
@@ -131,5 +374,16 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  /* Journey content is visible right away, with no staggered delays. */
+  .journey-step {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .journey-code-line,
+  .journey-stack-visible .journey-layer {
+    animation-delay: 0ms !important;
   }
 }

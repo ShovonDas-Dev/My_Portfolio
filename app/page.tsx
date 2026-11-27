@@ -1,4 +1,5 @@
 import About from "@/components/About/About";
+import DevelopmentJourney from "@/components/DevelopmentJourney/DevelopmentJourney";
 import Expertise from "@/components/Expertise/Expertise";
 import FeaturedProjects from "@/components/FeaturedProjects/FeaturedProjects";
 import Hero from "@/components/Hero/Hero";
@@ -12,6 +13,7 @@ export default function Page() {
       <Expertise />
       {/* <Projects /> */}
       <FeaturedProjects />
+      <DevelopmentJourney />
     </>
   );
 }
